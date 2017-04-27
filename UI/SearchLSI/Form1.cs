@@ -30,6 +30,9 @@ namespace SearchLSI
             {
                 radioButtonFrek.Checked = true;
             }
+            double trackVal = trackBar1.Value;
+            trackVal = trackVal / 100;
+            label1.Text = "cos: "+trackVal.ToString();
             
         }
 
@@ -115,7 +118,11 @@ namespace SearchLSI
             int stBesed = textBoxSearch.Text.Split(null).Length;//split by whitespaces and count
             string potDoGenerate = Properties.Settings.Default.generatePATH;
             string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
-            _process.StartInfo.Arguments = potdo +"search.m" + " " + potdo + " " + textBoxSearch.Text;
+            
+            double prop = trackBar1.Value;
+            prop = prop / 100;
+            
+            _process.StartInfo.Arguments = potdo +"search.m" + " " + potdo +" "+ prop + " " + textBoxSearch.Text;
 
             if (!_process.Start())
             {
@@ -153,7 +160,14 @@ namespace SearchLSI
             startInd = 0;
             if (dokumenti.Length > 0)
             {
-                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[startInd]);
+                try
+                {
+                    textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[startInd]);
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -207,6 +221,13 @@ namespace SearchLSI
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            double trackval = trackBar1.Value;
+            trackval = trackval / 100;
+            label1.Text = "cos: "+trackval.ToString();
         }
     }
 }
