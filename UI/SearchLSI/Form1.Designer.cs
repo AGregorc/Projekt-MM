@@ -41,7 +41,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.radioButtonFrek = new System.Windows.Forms.RadioButton();
             this.radioButtonGlob = new System.Windows.Forms.RadioButton();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxResult
@@ -68,7 +71,7 @@
             this.textBoxSearch.Font = new System.Drawing.Font("Arial", 29F);
             this.textBoxSearch.Location = new System.Drawing.Point(12, 85);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(426, 52);
+            this.textBoxSearch.Size = new System.Drawing.Size(273, 52);
             this.textBoxSearch.TabIndex = 15;
             this.textBoxSearch.Text = "curve fitting";
             // 
@@ -77,9 +80,9 @@
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(444, 85);
+            this.button3.Location = new System.Drawing.Point(291, 85);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(104, 52);
+            this.button3.Size = new System.Drawing.Size(204, 52);
             this.button3.TabIndex = 14;
             this.button3.Text = "Search";
             this.button3.UseVisualStyleBackColor = true;
@@ -91,9 +94,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(344, 27);
+            this.button2.Location = new System.Drawing.Point(291, 27);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 52);
+            this.button2.Size = new System.Drawing.Size(94, 52);
             this.button2.TabIndex = 13;
             this.button2.Text = "Generate";
             this.button2.UseVisualStyleBackColor = true;
@@ -105,7 +108,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(12, 27);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(326, 52);
+            this.button1.Size = new System.Drawing.Size(273, 52);
             this.button1.TabIndex = 12;
             this.button1.Text = "Select Folder";
             this.button1.UseVisualStyleBackColor = true;
@@ -160,7 +163,7 @@
             // radioButtonFrek
             // 
             this.radioButtonFrek.AutoSize = true;
-            this.radioButtonFrek.Location = new System.Drawing.Point(513, 27);
+            this.radioButtonFrek.Location = new System.Drawing.Point(501, 103);
             this.radioButtonFrek.Name = "radioButtonFrek";
             this.radioButtonFrek.Size = new System.Drawing.Size(43, 17);
             this.radioButtonFrek.TabIndex = 21;
@@ -172,7 +175,7 @@
             // radioButtonGlob
             // 
             this.radioButtonGlob.AutoSize = true;
-            this.radioButtonGlob.Location = new System.Drawing.Point(513, 62);
+            this.radioButtonGlob.Location = new System.Drawing.Point(501, 85);
             this.radioButtonGlob.Name = "radioButtonGlob";
             this.radioButtonGlob.Size = new System.Drawing.Size(45, 17);
             this.radioButtonGlob.TabIndex = 22;
@@ -180,11 +183,33 @@
             this.radioButtonGlob.Text = "glob";
             this.radioButtonGlob.UseVisualStyleBackColor = true;
             // 
+            // trackBar1
+            // 
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.Location = new System.Drawing.Point(391, 27);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(160, 52);
+            this.trackBar1.TabIndex = 23;
+            this.trackBar1.Value = 80;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(498, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "cos: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 521);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.radioButtonGlob);
             this.Controls.Add(this.radioButtonFrek);
             this.Controls.Add(this.button5);
@@ -204,6 +229,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,6 +249,8 @@
         private System.Windows.Forms.RichTextBox textBoxVsebina;
         private System.Windows.Forms.RadioButton radioButtonFrek;
         private System.Windows.Forms.RadioButton radioButtonGlob;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
