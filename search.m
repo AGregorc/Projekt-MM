@@ -24,7 +24,9 @@
   relevant_docs = sortrows([(1:number_of_docs)', cos](cos > 0.8, :), -2);
   doc_names = file_names(relevant_docs(:, 1));
   cos_values = relevant_docs(:, 2);
-  suc="oja"
-  [doc_names, cos_values]
+  
+  CellAr = {};
+  CellAr{1}=doc_names 
+  CellAr{2}=cos_values
   
 %end
