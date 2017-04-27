@@ -83,7 +83,7 @@
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(291, 85);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(204, 52);
+            this.button3.Size = new System.Drawing.Size(257, 52);
             this.button3.TabIndex = 14;
             this.button3.Text = "Search";
             this.button3.UseVisualStyleBackColor = true;
@@ -91,8 +91,7 @@
             // 
             // button2
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(291, 27);
@@ -170,7 +169,7 @@
             // 
             this.radioButtonFrek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonFrek.AutoSize = true;
-            this.radioButtonFrek.Location = new System.Drawing.Point(501, 103);
+            this.radioButtonFrek.Location = new System.Drawing.Point(499, 45);
             this.radioButtonFrek.Name = "radioButtonFrek";
             this.radioButtonFrek.Size = new System.Drawing.Size(43, 17);
             this.radioButtonFrek.TabIndex = 21;
@@ -183,7 +182,7 @@
             // 
             this.radioButtonGlob.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonGlob.AutoSize = true;
-            this.radioButtonGlob.Location = new System.Drawing.Point(501, 85);
+            this.radioButtonGlob.Location = new System.Drawing.Point(499, 27);
             this.radioButtonGlob.Name = "radioButtonGlob";
             this.radioButtonGlob.Size = new System.Drawing.Size(45, 17);
             this.radioButtonGlob.TabIndex = 22;
@@ -198,7 +197,7 @@
             this.trackBar1.Location = new System.Drawing.Point(391, 27);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(160, 52);
+            this.trackBar1.Size = new System.Drawing.Size(104, 52);
             this.trackBar1.TabIndex = 23;
             this.trackBar1.Value = 80;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -207,7 +206,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(498, 123);
+            this.label1.Location = new System.Drawing.Point(496, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 24;
