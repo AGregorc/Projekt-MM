@@ -71,26 +71,30 @@ namespace SearchLSI
             
             _process.StartInfo.Arguments = Properties.Settings.Default.generatePATH +" "+ potdo + " "+ Properties.Settings.Default.folderPATH +" "+(radioButtonFrek.Checked?"f":"a");
 
-
+            Boolean napaka = false;
             if (!_process.Start())
             {
-                textBoxResult.Text = "error while generating";
+              
                 //     MessageBox.Show("Error starting");
-
+                napaka = true;
             }
             else
             {
-                textBoxResult.Text = "Succesfully generated";
+                napaka = false;
+                
             }
             string izhod = "";
+            textBoxResult.Text = "";
             while (!_process.StandardOutput.EndOfStream)
             {
                 string line = _process.StandardOutput.ReadLine();
                 izhod += line + "\n";
-
+                textBoxResult.AppendText(line);
                 // do something with line
-               
+
             }
+            if (!napaka) textBoxResult.AppendText("\nSuccesfully generated");
+            else textBoxResult.AppendText("\nerror while generating");
 
             _process.Close();
             
@@ -111,7 +115,7 @@ namespace SearchLSI
             int stBesed = textBoxSearch.Text.Split(null).Length;//split by whitespaces and count
             string potDoGenerate = Properties.Settings.Default.generatePATH;
             string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
-            _process.StartInfo.Arguments = Properties.Settings.Default.searchPATH + " " + potdo + " " + textBoxSearch.Text;
+            _process.StartInfo.Arguments = potdo +"search.m" + " " + potdo + " " + textBoxSearch.Text;
 
             if (!_process.Start())
             {
@@ -157,9 +161,7 @@ namespace SearchLSI
         {
             Properties.Settings.Default.octavePATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do octava", "PATH", Properties.Settings.Default.octavePATH, -1, -1);
             Properties.Settings.Default.generatePATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do generate.m", "PATH", Properties.Settings.Default.generatePATH, -1, -1);
-            Properties.Settings.Default.searchPATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do search.m", "PATH", Properties.Settings.Default.searchPATH, -1, -1);
-
-            //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
+                      //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
         }
 
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
