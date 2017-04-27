@@ -4,7 +4,7 @@
   number_of_docs = str2num(gen_arguments{1});
   
   basePATH = gen_arguments{2};
-  folderPATH = gen_arguments{3};
+  folderPATH = gen_arguments{3}
   path_to_docs = folderPATH
   %basePATH = 'C:/Users/Cyws/Dropbox/2.letnik/MatematicnoModeliranje/1.projekt/';
 
