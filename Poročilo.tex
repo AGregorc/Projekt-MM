@@ -42,7 +42,7 @@
 \pagenumbering{gobble} 
 \begin{titlepage}
 \author{Domen Gašperlin\\Rok Grmek\\Jakob Gaberc Artenjak\\Anže Gregorc\and Matemetično modeliranje, Fakulteta za računalništvo in informatiko}
-\title{\textbf{1. Projekt\\Iskanje po zbirki dokumentov}}
+\title{\textbf{1. projekt\\Iskanje po zbirki dokumentov}}
 \date{April, 2017}
 
 \maketitle
@@ -57,6 +57,7 @@ Izdelati je potrebno program, ki bo v dani zbirki za dane ključne besede poiska
 
 \section{Naloge}
 \subsection{Iz zbirke dokumentov zgradite matriko A povezav med besedami in dokumenti.}
+\label{sec:matrikaA}
 
 Matrika A:
 \begin{equation*}
@@ -120,11 +121,75 @@ In sedaj imamo vse pripravljeno za gradnjo matrike A:
   end
 \end{lstlisting}
 
-\subsection{ }
+\subsection{Matriko A razcepite z odrezanim SVD razcepom \\
+ \( A = U_{k}S_{k}V^{T}_{k} \), ki obdrži le k največjih singularnih vrednosti.}
 
+V Octave okolju lahko odrezan SVD razcep dobimo z ukazom:
 
+\begin{lstlisting}
+               [U, S, V] = svds(A, k);
+\end{lstlisting}
+Odrezan SVD zmanjša t. i. "overfitting" (preveliko prilagoditev modela podatkom, kar povzroči povečan vpliv šuma).
 
+\paragraph{Razmislite kaj predstavljajo stolpci matrike \( U_{k} \) in matrike \( V_{k} \).}
+Stolpci matrike \( U_{k} \) predstavljajo "skrite značilnosti" (hidden feature) besed. Ker je matrika ortonormirana, lahko govorimo kot o neki klasifikaciji besed.
+Enako velja za matriko  \( V_{k} \), le da njene vrstice predstavljajo "skrite značilnosti" dokumentov.
 
+\paragraph{Kakšen k uporabiti?}
+Odločili smo se, da bomo s trisekcijo poiskusili najti najprimernejši k, ki bo ohranil razcep dovolj natančen in obenem zmanjšal vpliv šuma. 
+\pagebreak \\
+Potek trisekcije: najprej za vsak i od 1 do števila pivotov matrike A izračunamo SVD razcep. V vektor shranimo logaritemske napake (napaka i-tega razcepa glede na matriko A):
+
+\begin{lstlisting}
+svd_errors = zeros(rank(a)-1, 1);
+for i=1:length(svd_errors)
+	[U, S, V] = svds(a, i);
+	svd_errors(i) = log(norm(U*S*V' - a, 'inf'));
+end
+\end{lstlisting}
+
+Nato s pomočjo trisekcije najdemo dve točki, ki razdelijo podatke (vektor napak) na tri dele. Vsi deli imajo enako število podatkov. Vsako točko posebej pa uporabimo za razdelitev vseh podatkov, po katerih z linearno (\( y = x\cdot b + e \)) metodo najmanjših kvadratov najdemo dve najprimernejši premici. Postopek trisekcije nadaljujemo tako, da prestavimo skrajno desno oz. levo točko (odvisno, kateri dve premici najbolje opisujeta krivuljo napake). \\ \\
+Implementacija trisekcije:
+
+\begin{lstlisting}
+left_limit = 1;
+right_limit = length(svd_errors);
+while(right_limit - left_limit > 2)
+	left = round(left_limit + (right_limit - left_limit) / 3);
+	right = round(right_limit - (right_limit - left_limit) / 3);
+	[~, ~, r1_left] = ols(svd_errors(1:left), (1:left)');
+	[~, ~, r2_left] = ols(svd_errors(left:length(svd_errors)), (left:length(svd_errors))');
+	[~, ~, r1_right] = ols(svd_errors(1:right), (1:right)');
+	[~, ~, r2_right] = ols(svd_errors(right:length(svd_errors)), (right:length(svd_errors))');
+	if(mean([r1_left; r2_left].^2) < mean([r1_right; r2_right].^2))
+		right_limit = right;
+	else
+		left_limit = left;
+	end
+end
+k = round((right_limit + left_limit) / 2);
+\end{lstlisting}
+\pagebreak
+\subsection{Iskani niz besed (poizvedbo) zapišite z vektorjem q. Iz poizvedbe q generirajte vektor v prostoru dokumentov s formulo 
+\( \hat q  = q ^{T}\cdot U_{k}  \cdot S_{ k }^{-1}\) }
+
+Vektor q ima dimenzije enake vektorju, ki vsebuje vse unikatne besede. Zgrajen pa je tako, da je vrstica besede, ki ni v nizu besed (poizvedbi), enaka 0. Vrstice besed, ki pa so vsebovane v poizvedbi pa nosijo vrednost frekvenc določene besede v nizu. Postopek je podoben generiranju frekvenc (stolpcev) za vsak dokument pri nalogi \ref{sec:matrikaA}.
+
+\begin{lstlisting}
+q = zeros(length(unique_words), 1);
+for i = 2:length(args)
+	q = q + ismember(unique_words, lower(args{i}(isalnum(args{i}))));
+end
+\end{lstlisting}
+
+Iskanim dokumentom ustrezajo vrstice Vk, ki so dovolj blizu vektorju \(  \hat q \). Kot je v navodilih pisalo, smo za razdaljo uporabili kosinus kota med dvema vektorjema in ne Evklidske razdalje med njima.
+
+\begin{lstlisting}
+q2 = q' * U * inv(S);
+cos = (V * q2') ./ (sqrt(sum(q2.^2)) * sqrt(sum(V.^2, 2)));
+relevant_docs=sortrows([(1:number_of_docs)', cos](cos > min_cos, :), -2);
+doc_names = file_names(relevant_docs(:, 1));
+\end{lstlisting}
 
 
 
