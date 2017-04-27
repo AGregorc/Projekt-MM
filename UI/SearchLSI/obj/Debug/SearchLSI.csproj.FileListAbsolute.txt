@@ -1,0 +1,9 @@
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Debug\SearchLSI.csprojResolveAssemblyReference.cache
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Debug\SearchLSI.Form1.resources
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Debug\SearchLSI.Properties.Resources.resources
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Debug\SearchLSI.csproj.GenerateResource.Cache
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\bin\Debug\SearchLSI.exe.config
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\bin\Debug\SearchLSI.exe
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\bin\Debug\SearchLSI.pdb
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Debug\SearchLSI.exe
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Debug\SearchLSI.pdb
