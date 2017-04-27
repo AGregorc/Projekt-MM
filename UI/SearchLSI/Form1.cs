@@ -180,7 +180,8 @@ namespace SearchLSI
             string potDoGenerate = Properties.Settings.Default.generatePATH;
             string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
             Properties.Settings.Default.folderPATH = potdo + "classic" + "/";
-                      //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
+            Properties.Settings.Default.matrixPATH = potdo;
+            //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
         }
 
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
