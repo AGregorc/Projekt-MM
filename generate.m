@@ -38,10 +38,10 @@ else
 	a = f;
 end
 
-svd_errors = zeros(rank(a)-1, 1);
+svd_errors = zeros(rank(a), 1);
 for i = 1:length(svd_errors)
 	[U, S, V] = svds(a, i);
-	svd_errors(i) = log(norm(U*S*V' - a, 'inf'));
+	svd_errors(i) = norm(U*S*V' - a, 'inf');
 end
 
 left_limit = 1;
@@ -49,10 +49,10 @@ right_limit = length(svd_errors);
 while(right_limit - left_limit > 2)
 	left = round(left_limit + (right_limit - left_limit) / 3);
 	right = round(right_limit - (right_limit - left_limit) / 3);
-	[~, ~, r1_left] = ols(svd_errors(1:left), (1:left)');
-	[~, ~, r2_left] = ols(svd_errors(left:length(svd_errors)), (left:length(svd_errors))');
-	[~, ~, r1_right] = ols(svd_errors(1:right), (1:right)');
-	[~, ~, r2_right] = ols(svd_errors(right:length(svd_errors)), (right:length(svd_errors))');
+	[~, ~, r1_left] = ols(svd_errors(1:left), [(1:left)', ones(left, 1)]);
+	[~, ~, r2_left] = ols(svd_errors(left:length(svd_errors)), [(left:length(svd_errors))', ones(1+length(svd_errors)-left, 1)]);
+	[~, ~, r1_right] = ols(svd_errors(1:right), [(1:right)', ones(right)]);
+	[~, ~, r2_right] = ols(svd_errors(right:length(svd_errors)), [(right:length(svd_errors))', ones(1+length(svd_errors)-right, 1)]);
 	if(mean([r1_left; r2_left].^2) < mean([r1_right; r2_right].^2))
 		right_limit = right;
 	else
@@ -60,6 +60,13 @@ while(right_limit - left_limit > 2)
 	end
 end
 k = round((right_limit + left_limit) / 2)
+
+%x = [1; length(svd_errors)];
+%[b, ~, ~] = ols(svd_errors(1:k), [(1:k)', ones(k, 1)]);
+%y1 = b(1)*x + b(2);
+%[b, ~, ~] = ols(svd_errors(k:length(svd_errors)), [(k:length(svd_errors))', ones(1+length(svd_errors)-k, 1)]);
+%y2 = b(1)*x + b(2);
+%plot((1:length(svd_errors))', svd_errors, x, y1, x, y2);
 
 [U, S, V] = svds(a, k);
 
