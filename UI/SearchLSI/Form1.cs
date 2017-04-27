@@ -26,6 +26,10 @@ namespace SearchLSI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (!radioButtonGlob.Checked)
+            {
+                radioButtonFrek.Checked = true;
+            }
             
         }
 
@@ -65,7 +69,7 @@ namespace SearchLSI
 
             //_process.StartInfo.Arguments = @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\generate.m" + " 10 "+ @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\"+" "+ @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\classic\";
             
-            _process.StartInfo.Arguments = Properties.Settings.Default.generatePATH +" "+ potdo + " "+ Properties.Settings.Default.folderPATH;
+            _process.StartInfo.Arguments = Properties.Settings.Default.generatePATH +" "+ potdo + " "+ Properties.Settings.Default.folderPATH +" "+(radioButtonFrek.Checked?"f":"a");
 
 
             if (!_process.Start())
@@ -94,6 +98,7 @@ namespace SearchLSI
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
             textBoxVsebina.Text = "";
             Process _process = new Process();
             _process.StartInfo.UseShellExecute = false;
@@ -189,6 +194,16 @@ namespace SearchLSI
             textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(--startInd) % dokumenti.Length]);
             
             
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
         }
     }

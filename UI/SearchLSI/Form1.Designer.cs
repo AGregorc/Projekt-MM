@@ -39,6 +39,8 @@
             this.textBoxVsebina = new System.Windows.Forms.RichTextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.radioButtonFrek = new System.Windows.Forms.RadioButton();
+            this.radioButtonGlob = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +93,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(344, 27);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(204, 52);
+            this.button2.Size = new System.Drawing.Size(163, 52);
             this.button2.TabIndex = 13;
             this.button2.Text = "Generate";
             this.button2.UseVisualStyleBackColor = true;
@@ -118,6 +120,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(560, 24);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // settingsToolStripMenuItem
             // 
@@ -154,11 +157,36 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // radioButtonFrek
+            // 
+            this.radioButtonFrek.AutoSize = true;
+            this.radioButtonFrek.Location = new System.Drawing.Point(513, 27);
+            this.radioButtonFrek.Name = "radioButtonFrek";
+            this.radioButtonFrek.Size = new System.Drawing.Size(43, 17);
+            this.radioButtonFrek.TabIndex = 21;
+            this.radioButtonFrek.TabStop = true;
+            this.radioButtonFrek.Text = "frek";
+            this.radioButtonFrek.UseVisualStyleBackColor = true;
+            this.radioButtonFrek.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButtonGlob
+            // 
+            this.radioButtonGlob.AutoSize = true;
+            this.radioButtonGlob.Location = new System.Drawing.Point(513, 62);
+            this.radioButtonGlob.Name = "radioButtonGlob";
+            this.radioButtonGlob.Size = new System.Drawing.Size(45, 17);
+            this.radioButtonGlob.TabIndex = 22;
+            this.radioButtonGlob.TabStop = true;
+            this.radioButtonGlob.Text = "glob";
+            this.radioButtonGlob.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 521);
+            this.Controls.Add(this.radioButtonGlob);
+            this.Controls.Add(this.radioButtonFrek);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBoxVsebina);
@@ -193,6 +221,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.RichTextBox textBoxVsebina;
+        private System.Windows.Forms.RadioButton radioButtonFrek;
+        private System.Windows.Forms.RadioButton radioButtonGlob;
     }
 }
 
