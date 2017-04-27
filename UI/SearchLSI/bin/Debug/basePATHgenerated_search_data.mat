@@ -1,0 +1,348 @@
+# Created by Octave 4.2.1, Thu Apr 27 14:18:38 2017 GMT <unknown@unknown>
+# name: number_of_docs
+# type: scalar
+10
+
+
+# name: unique_words
+# type: cell
+# rows: 38
+# columns: 1
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+algebraic
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+an
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+and
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+approximations
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+by
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+computer
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+computers
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+department
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+digital
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+engineering
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+equivalence
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+extraction
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+for
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+glossary
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+in
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+inspection
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+language
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+matrix
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+of
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+on
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+preliminary
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+procedures
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+program
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+programming
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+proposal
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+repeated
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+reportinternational
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 5
+roots
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+schemes
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+squareroot
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+subtractions
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+techniques
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+terminology
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+the
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+transformation
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+two
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 5
+uncol
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+use
+
+
+
+
+
+# name: U
+# type: matrix
+# rows: 38
+# columns: 3
+ 1.244173851710422e-016 1.37294155751085e-017 7.127399443949679e-017
+ -0.001391309623859183 -0.02201225377017057 0.04303025817070844
+ -0.4012638281385665 0.009981166351467409 -0.1725671333156198
+ 9.037522326884337e-017 4.129522016408484e-017 3.669065877906516e-017
+ -0.02984072876398579 -0.1500816955781174 0.210678504081364
+ -0.3363923535307201 0.1855468921887292 0.006936111651116061
+ -0.06359628286964815 -0.2982807001743358 0.2991764189005885
+ -0.007607297996536228 -0.09863705147187675 -0.1634704033799258
+ -0.02984072876398591 -0.1500816955781176 0.210678504081364
+ -0.33639235353072 0.1855468921887291 0.006936111651116099
+ -0.04931543125107568 -0.1584143151154131 -0.1578064180127016
+ -0.02984072876398592 -0.1500816955781176 0.2106785040813639
+ -0.0333968783230125 -0.1840225929265073 0.2712945135759101
+ -0.33639235353072 0.1855468921887291 0.006936111651116124
+ -0.02963313968258866 -0.1288639647945439 0.06910481307384062
+ -0.02963313968258863 -0.128863964794544 0.06910481307384062
+ 1.387880344185178e-016 1.134635639582177e-016 9.587938296879522e-017
+ -0.007607297996536277 -0.09863705147187678 -0.1634704033799259
+ -0.4856829588070626 -0.3185894182558572 0.1512015216479312
+ -0.06086831217638779 -0.274868809588196 -0.3435460336853834
+ 1.384256219424809e-016 3.403113708925937e-017 7.825348909138344e-017
+ -0.02963313968258861 -0.1288639647945439 0.06910481307384064
+ -0.06086831217638792 -0.274868809588196 -0.3435460336853836
+ -0.3363923535307201 0.1855468921887291 0.006936111651116115
+ -0.001391309623859106 -0.02201225377017042 0.0430302581707084
+ -0.02984072876398587 -0.1500816955781176 0.210678504081364
+ 1.14429013782739e-016 9.563888825379678e-017 2.540765063692862e-017
+ -0.02984072876398587 -0.1500816955781175 0.2106785040813639
+ -0.06086831217638788 -0.274868809588196 -0.3435460336853835
+ 2.089268470227246e-017 7.823977996788164e-018 1.943011761629262e-017
+ -0.02984072876398592 -0.1500816955781176 0.210678504081364
+ -0.007607297996536243 -0.09863705147187665 -0.1634704033799259
+ -0.3363923535307201 0.1855468921887292 0.006936111651116125
+ -0.08442086886885493 -0.3071908928855268 -0.09484993167631227
+ -0.04931543125107567 -0.158414315115413 -0.1578064180127016
+ 2.230730744888312e-018 -3.640707987077456e-018 2.862772916519355e-017
+ -0.001391309623859128 -0.02201225377017044 0.04303025817070844
+ -0.02963313968258856 -0.1288639647945438 0.0691048130738406
+
+
+# name: S
+# type: diagonal matrix
+# rows: 3
+# columns: 3
+3.711266903778159
+2.395069598354313
+2.163435427718863
+
+
+# name: V
+# type: matrix
+# rows: 10
+# columns: 3
+ 2.202594479873862e-016 2.329039686843273e-016 3.311623944571551e-016
+ -0.159774016475025 -0.5185855420464048 0.6575650199142916
+ -0.04073119544238162 -0.3408260321577847 -0.5102201552200347
+ -0.540944747231538 0.1925557210652235 0.006501964839038014
+ 2.100051963245914e-016 1.641161491740076e-016 1.847049822414094e-016
+ -0.1586625375438792 -0.4452707492130104 0.2156883920512562
+ -0.5409447472315381 0.1925557210652235 0.006501964839038039
+ -0.2640459818357955 -0.5473777008954209 -0.4925418511755235
+ -0.00744938665950459 -0.07606015183327416 0.1343050763262085
+ -0.540944747231538 0.1925557210652236 0.006501964839037984
+
+
