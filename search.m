@@ -6,7 +6,7 @@ load([base_path, 'generated_search_data.mat']);
 
 q = zeros(length(unique_words), 1);
 for i = 3:length(args)
-	q = q | ismember(unique_words, lower(args{i}(isalnum(args{i}))));
+	q += ismember(unique_words, lower(args{i}(isalnum(args{i}))));
 end
 
 q2 = q' * U * inv(S);
