@@ -1,6 +1,6 @@
 args = argv();
 base_path = args{1};
-min_cos = str2num(args{2});
+min_cos = str2num(args{2})/100;
 
 load([base_path, 'generated_search_data.mat']);
 
