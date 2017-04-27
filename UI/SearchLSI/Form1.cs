@@ -124,11 +124,10 @@ namespace SearchLSI
             string potDoGenerate = Properties.Settings.Default.generatePATH;
             string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
             
-            double prop = trackBar1.Value;
-            prop = prop / 100;
+           
            
             
-            _process.StartInfo.Arguments = potdo +"search.m" + " " + Properties.Settings.Default.matrixPATH + " "+ prop + " " + textBoxSearch.Text;
+            _process.StartInfo.Arguments = potdo +"search.m" + " " + Properties.Settings.Default.matrixPATH + " "+ trackBar1.Value + " " + textBoxSearch.Text;
 
             if (!_process.Start())
             {
