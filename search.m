@@ -1,16 +1,6 @@
-%function result = search(search_str)
-  search_arguments = argv();%dobi vse argumente
-  stBesed = str2num(search_arguments{1});%prvi argument je dolzina iskalnega niza
-  search_str=[]; 
-  for r = 2:1+stBesed;
-	search_str = strcat(search_str,cstrcat(' ',search_arguments{r}));
-  pot = search_arguments{2+stBesed};%zadnji argument je pot do podatkov .mat
-  end
-  search_str
-  pot
+function [doc_names, cos_values] = search2(search_str)
   
-  
-  load(pot);
+  load('generated_search_data.mat');
   
   search_words = strsplit(search_str);
   q = zeros(length(unique_words), 1);
@@ -20,7 +10,8 @@
   
   q2 = q' * U * inv(S);
   cos = (V * q2') ./ (sqrt(sum(q2.^2)) * sqrt(sum(V.^2, 2)));
-  docs = sortrows([(1:number_of_docs)', cos], -2);
-  result = docs(docs(:, 2) > 0.8, 1:2)
+  relevant_docs = sortrows([(1:number_of_docs)', cos](cos > 0.8, :), -2);
+  doc_names = file_names(relevant_docs(:, 1));
+  cos_values = relevant_docs(:, 2);
   
-%end
+end
