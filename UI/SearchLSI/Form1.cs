@@ -64,6 +64,7 @@ namespace SearchLSI
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            textBoxResult.Text = "Generating";
             Process _process = new Process();
             _process.StartInfo.UseShellExecute = false;
             _process.StartInfo.RedirectStandardInput = true;
@@ -165,14 +166,10 @@ namespace SearchLSI
             startInd = 0;
             if (dokumenti.Length > 0)
             {
-                try
-                {
-                    textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[startInd]);
-                }
-                catch
-                {
-
-                }
+                
+                    textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(startInd) % dokumenti.Length]);
+                
+               
             }
         }
 

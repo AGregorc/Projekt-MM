@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="generatePATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\generate.m</Value>
+      <Value Profile="(Default)">..\..\..\..\generate.m</Value>
     </Setting>
     <Setting Name="octavePATH" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Octave\Octave-4.2.1\bin\octave-cli.exe</Value>

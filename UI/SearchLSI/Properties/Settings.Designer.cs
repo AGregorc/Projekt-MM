@@ -25,7 +25,7 @@ namespace SearchLSI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Cyws\\Dropbox\\2.letnik\\MatematicnoModeliranje\\1.projekt\\generate.m")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\generate.m")]
         public string generatePATH {
             get {
                 return ((string)(this["generatePATH"]));
