@@ -42,15 +42,17 @@ namespace SearchLSI
         private void button1_Click_1(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            folderDialog.SelectedPath = Properties.Settings.Default.folderPATH;
             folderDialog.ShowNewFolderButton = false;
-            folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            
             DialogResult result = folderDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
                 String sPath = folderDialog.SelectedPath;
                
-                Properties.Settings.Default.folderPATH = sPath + "/";
+                Properties.Settings.Default.folderPATH = sPath + " / ";
 
             }
             else
@@ -213,9 +215,14 @@ namespace SearchLSI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
-            textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(--startInd) % dokumenti.Length]);
-            
+            try
+            {
+                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(--startInd) % dokumenti.Length]);
+            }
+            catch
+            {
+
+            }
             
 
         }
@@ -240,8 +247,10 @@ namespace SearchLSI
         private void button6_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            folderDialog.SelectedPath = Properties.Settings.Default.matrixPATH;
             folderDialog.ShowNewFolderButton = false;
-            folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+           
             DialogResult result = folderDialog.ShowDialog();
 
             if (result == DialogResult.OK)
