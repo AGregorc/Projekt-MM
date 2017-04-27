@@ -35,7 +35,7 @@ if(mode == 'a')
 	G = 1 - sum(plogp/number_of_docs, 2);
 	a = L .* G;
 else
-	a = f
+	a = f;
 end
 
 svd_errors = zeros(rank(a)-1, 1);
@@ -59,7 +59,7 @@ while(right_limit - left_limit > 2)
 		left_limit = left;
 	end
 end
-k = round((right_limit + left_limit) / 2);
+k = round((right_limit + left_limit) / 2)
 
 [U, S, V] = svds(a, k);
 
