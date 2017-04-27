@@ -124,7 +124,7 @@ namespace SearchLSI
             
             double prop = trackBar1.Value;
             prop = prop / 100;
-            MessageBox.Show(prop.ToString());
+           
             
             _process.StartInfo.Arguments = potdo +"search.m" + " " + Properties.Settings.Default.matrixPATH + " "+ prop + " " + textBoxSearch.Text;
 
