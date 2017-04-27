@@ -19,7 +19,7 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
-\lstset{frame=tb,
+\lstset{
   language=Octave,
   aboveskip=3mm,
   belowskip=3mm,
@@ -46,32 +46,7 @@
 \date{April, 2017}
 
 \maketitle
-\begin{center}
-  \begin{tikzpicture} 
-    \begin{scope} [vertex style/.style={draw,
-                                       circle,
-                                       minimum size=10mm,
-                                       inner sep=0pt,
-                                       outer sep=0pt,
-                                       shade}] 
-      \path \foreach \i in {0,...,4}{%
-       (72*\i:2) coordinate[vertex style] (a\i)
-       (72*\i:4) coordinate[vertex style] (b\i)}
-       ; 
-    \end{scope}
 
-     \begin{scope} [edge style/.style={draw=blue,double=black}]
-       \foreach \i  in {0,...,4}{%
-       \pgfmathtruncatemacro{\nextb}{mod(\i+1,5)}
-       \pgfmathtruncatemacro{\nexta}{mod(\i+2,5)} 
-       \draw[edge style] (a\i)--(b\i);
-       \draw[edge style] (a\i)--(a\nexta);
-       \draw[edge style] (b\i)--(b\nextb);
-       }  
-     \end{scope}
-
-  \end{tikzpicture}
-\end{center}
 \end{titlepage}
 
 \pagenumbering{arabic}  
@@ -81,9 +56,9 @@ Namen projekta je izdelati iskalnik relevantnih dokumentov po ključnih besedah 
 Izdelati je potrebno program, ki bo v dani zbirki za dane ključne besede poiskal najbolj relevantne dokumente.
 
 \section{Naloge}
-\subsection{Iz zbirke dokumentov zgradite matriko A povezav med besedami in dokumenti. Vsak dokument naj ima v matriki svoj stolpec, vsaka beseda pa svojo vrstico. Element a\textsubscript{ij} naj bo frekvenca i-te besede v j-tem dokumentu.}
+\subsection{Iz zbirke dokumentov zgradite matriko A povezav med besedami in dokumenti.}
 
-Gradnja matrike A:
+Matrika A:
 \begin{equation*}
   \mathbf{A}=
   \begin{blockarray}{*{5}{c} l}
@@ -99,16 +74,61 @@ Gradnja matrike A:
   \end{blockarray}
 \end{equation*}
 
+ Vsak dokument  ima v matriki svoj stolpec, vsaka beseda pa svojo vrstico. Element a\textsubscript{ij} pa je frekvenca i-te besede v j-tem dokumentu.\\*
+
+Postopek gradnje:
+\begin{lstlisting}
+  number_of_docs = length(file_names);  # shranimo stevilo vseh dokumentov
+  all_words = []; # inicializacija polja, ki bo vsebovala vse besede
+  num_of_words_in_docs = zeros(1, number_of_docs); # vektor, ki za vsak dokument hrani stevilo vseh besed
+  for i = 1:number_of_docs # sprehodimo se po vseh dokumentih
+     # preberemo i-ti dokument
+    doc = textread([path_to_docs, filesep, file_names{i}], '%s');
+    # vse besede spremenimo na samo alfa numericne znake in v male crke
+    for j = 1:length(doc)
+      doc{j} = lower(doc{j}(isalnum(doc{j})));
+    end
+    # dodamo besede i-tega dokumenta v polje vseh besed
+    all_words = [all_words; doc]; 
+    # dodamo stevilo vseh besed v i-tem dokumentu
+    num_of_words_in_docs(i) = length(doc); 
+  end
+
+\end{lstlisting}
+Ko imamo zgrajeno polje vseh besed, moramo odstraniti podvojene besede in s tem ustvarimo polje, ki bo služilo kot stolpec v matriki A.
+\begin{lstlisting}
+[unique_words, ~, numbers] = unique(all_words);
+\end{lstlisting}
+
+In sedaj imamo vse pripravljeno za gradnjo matrike A:
 
 \begin{lstlisting}
-  f = zeros(length(unique_words), number_of_docs); # matrika f dimenzije (stevilo vseh razlicnih beseded) x (stevilo vseh dokumentov)
+  all_possible_numbers = (1:length(unique_words))';   # vektor od 1 do st vseh unikatnih besed
+
+# matrika A dimenzije (st. vseh unikatnih besed) x (st. vseh dokumentov) 
+  A = zeros(length(unique_words), number_of_docs);
   doc_end = 0;
+
+  # sprehodimo se po vseh dokumentih
   for i = 1:number_of_docs
-    doc_start = doc_end + 1;
+    # hranita stevilo, pri kateri se zacnejo in koncajo besede i-tega dokumenta v polju vseh besed 
+    doc_start = doc_end + 1; 
     doc_end = doc_start + num_of_words_in_docs(i) - 1;
-    f(:, i) = histc(numbers(doc_start:doc_end, 1), all_possible_numbers);
+
+    # dodamo frekvence i-tega dokumenta v matriko A
+    A(:, i) = histc(numbers(doc_start:doc_end, 1), all_possible_numbers);
   end
 \end{lstlisting}
+
+\subsection{ }
+
+
+
+
+
+
+
+
 
 
 
