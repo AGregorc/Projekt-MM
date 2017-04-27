@@ -9,11 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace SearchLSI
 {
     public partial class Form1 : Form
     {
+        object[] dokumenti;
+        int startInd = 0;
         public Form1()
         {
             InitializeComponent();
@@ -40,6 +43,10 @@ namespace SearchLSI
                 Properties.Settings.Default.folderPATH = sPath + "/";
 
             }
+            else
+            {
+                
+            }
             
         }
 
@@ -63,9 +70,13 @@ namespace SearchLSI
 
             if (!_process.Start())
             {
-                Console.WriteLine("Error starting");
+                textBoxResult.Text = "error while generating";
                 //     MessageBox.Show("Error starting");
 
+            }
+            else
+            {
+                textBoxResult.Text = "Succesfully generated";
             }
             string izhod = "";
             while (!_process.StandardOutput.EndOfStream)
@@ -74,14 +85,16 @@ namespace SearchLSI
                 izhod += line + "\n";
 
                 // do something with line
+               
             }
 
             _process.Close();
-            textBoxResult.Text = izhod;
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            textBoxVsebina.Text = "";
             Process _process = new Process();
             _process.StartInfo.UseShellExecute = false;
             _process.StartInfo.RedirectStandardInput = true;
@@ -93,7 +106,7 @@ namespace SearchLSI
             int stBesed = textBoxSearch.Text.Split(null).Length;//split by whitespaces and count
             string potDoGenerate = Properties.Settings.Default.generatePATH;
             string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
-            _process.StartInfo.Arguments = Properties.Settings.Default.searchPATH + " " +potdo + " " + textBoxSearch.Text;
+            _process.StartInfo.Arguments = Properties.Settings.Default.searchPATH + " " + potdo + " " + textBoxSearch.Text;
 
             if (!_process.Start())
             {
@@ -103,19 +116,36 @@ namespace SearchLSI
             }
             string izhod = "";
             textBoxResult.Text = "";
+            ArrayList list = new ArrayList();
+            Boolean ansCur = true;
             while (!_process.StandardOutput.EndOfStream)
             {
                 string line = _process.StandardOutput.ReadLine();
+                if (!ansCur)
+                {
+                    string[] words = line.Split(null);
+                    if (words.Length > 1)
+                    {
+                        list.Add(words[1]);
+                    }
+                }
+                ansCur = false;
                 izhod += line + "\n";
 
 
                 // do something with line
             }
+
+
             textBoxResult.Text = izhod;
             _process.Close();
+            dokumenti = list.ToArray();
 
-      //      textBoxVsebina.Text = System.IO.File.ReadAllText("C:\Users\main computer\Desktop\vb test\gyn-obs-D.txt")
-
+            startInd = 0;
+            if (dokumenti.Length > 0)
+            {
+                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[startInd]);
+            }
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -139,8 +169,27 @@ namespace SearchLSI
 
         private void button5_Click(object sender, EventArgs e)
         {
+            try
+            {
+                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(++startInd) % dokumenti.Length]);
+            }
+            catch
+            {
+
+            }
+            
+            
             //FileDialog openFileDialog1 = new FileDialog();
             //textBoxVsebina.Text = File.ReadAllText(openFileDialog1.FileName);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(--startInd) % dokumenti.Length]);
+            
+            
+
         }
     }
 }

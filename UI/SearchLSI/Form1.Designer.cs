@@ -68,6 +68,7 @@
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(426, 52);
             this.textBoxSearch.TabIndex = 15;
+            this.textBoxSearch.Text = "curve fitting";
             // 
             // button3
             // 
@@ -141,6 +142,7 @@
             this.button4.TabIndex = 19;
             this.button4.Text = "Back";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
