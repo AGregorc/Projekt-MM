@@ -178,19 +178,30 @@ Vektor q ima dimenzije enake vektorju, ki vsebuje vse unikatne besede. Zgrajen p
 \begin{lstlisting}
 q = zeros(length(unique_words), 1);
 for i = 2:length(args)
-	q = q + ismember(unique_words, lower(args{i}(isalnum(args{i}))));
+	q += ismember(unique_words, lower(args{i}(isalnum(args{i}))));
 end
 \end{lstlisting}
 
-Iskanim dokumentom ustrezajo vrstice Vk, ki so dovolj blizu vektorju \(  \hat q \). Kot je v navodilih pisalo, smo za razdaljo uporabili kosinus kota med dvema vektorjema in ne Evklidske razdalje med njima.
+Iskanim dokumentom ustrezajo vrstice \( V_{k} \), ki so dovolj blizu vektorju \(  \hat q \). Kot je v navodilih pisalo, smo za razdaljo uporabili kosinus kota med vektorjem \(  \hat q \) in vrsticami \( V_{k} \)  in ne Evklidske razdalje med njima.
 
 \begin{lstlisting}
-q2 = q' * U * inv(S);
+q2 = q' * U * inv(S); # generiran vektor v prostoru dokumentov
+
+# izracun kosinusne razdalje
 cos = (V * q2') ./ (sqrt(sum(q2.^2)) * sqrt(sum(V.^2, 2)));
+
+# vrne vektor relevantnih dokumentov, ki imajo razdaljo vecjo od min_cos
 relevant_docs=sortrows([(1:number_of_docs)', cos](cos > min_cos, :), -2);
 doc_names = file_names(relevant_docs(:, 1));
 \end{lstlisting}
 
+\subsection{Preiskusite shemo, pri kateri je lokalna mera dana z logaritmom frekvence \( f_{ij} \) i-te besede v j-tem dokumentu: \\*
+{\Large\centerline{\( L_{ij} = log(f_{ij} + 1) \)}} \\*
+Globalna mera pa je izračunana s pomočjo entropije: \\*
+{\Large\centerline{\( G_{i} = 1 - \sum_{j} \frac{p_{ij} \cdot log(p_{ij})}{log(n)}\) } }\\*
+kjer je n število dokumentov v zbirki, \\*
+{\Large\centerline{\( p_{ij} = \frac{ f_{ij}}{gf_{ij}} \)}}\\*
+in \(gf_{ij}\) frekvenca besede v celotni zbirki. }
 
 
 
