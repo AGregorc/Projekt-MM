@@ -33,7 +33,10 @@ namespace SearchLSI
             double trackVal = trackBar1.Value;
             trackVal = trackVal / 100;
             label1.Text = "cos: "+trackVal.ToString();
-            
+            string potDoGenerate = Properties.Settings.Default.generatePATH;
+            string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
+            Properties.Settings.Default.matrixPATH = potdo;
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -122,7 +125,7 @@ namespace SearchLSI
             double prop = trackBar1.Value;
             prop = prop / 100;
             
-            _process.StartInfo.Arguments = potdo +"search.m" + " " + potdo +" "+ prop + " " + textBoxSearch.Text;
+            _process.StartInfo.Arguments = potdo +"search.m" + " " + Properties.Settings.Default.matrixPATH + " "+ prop + " " + textBoxSearch.Text;
 
             if (!_process.Start())
             {
@@ -175,6 +178,9 @@ namespace SearchLSI
         {
             Properties.Settings.Default.octavePATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do octava", "PATH", Properties.Settings.Default.octavePATH, -1, -1);
             Properties.Settings.Default.generatePATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do generate.m", "PATH", Properties.Settings.Default.generatePATH, -1, -1);
+            string potDoGenerate = Properties.Settings.Default.generatePATH;
+            string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
+            Properties.Settings.Default.folderPATH = potdo + "classic" + "/";
                       //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
         }
 
@@ -228,6 +234,26 @@ namespace SearchLSI
             double trackval = trackBar1.Value;
             trackval = trackval / 100;
             label1.Text = "cos: "+trackval.ToString();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.ShowNewFolderButton = false;
+            folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            DialogResult result = folderDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                String sPath = folderDialog.SelectedPath;
+
+                Properties.Settings.Default.matrixPATH = sPath + "/";
+
+            }
+            else
+            {
+
+            }
         }
     }
 }

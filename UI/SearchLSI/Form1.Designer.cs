@@ -43,6 +43,7 @@
             this.radioButtonGlob = new System.Windows.Forms.RadioButton();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -108,9 +109,9 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(12, 27);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(273, 52);
+            this.button1.Size = new System.Drawing.Size(130, 52);
             this.button1.TabIndex = 12;
-            this.button1.Text = "Select Folder";
+            this.button1.Text = "Select Folder Files";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -212,11 +213,24 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "cos: ";
             // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Location = new System.Drawing.Point(148, 27);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(137, 52);
+            this.button6.TabIndex = 25;
+            this.button6.Text = "Select Folder Matrix";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 521);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.radioButtonGlob);
@@ -260,6 +274,7 @@
         private System.Windows.Forms.RadioButton radioButtonGlob;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button6;
     }
 }
 

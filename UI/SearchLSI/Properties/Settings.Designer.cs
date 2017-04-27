@@ -73,13 +73,13 @@ namespace SearchLSI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool rad {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Cyws\\Dropbox\\2.letnik\\MatematicnoModeliranje\\1.projekt\\")]
+        public string matrixPATH {
             get {
-                return ((bool)(this["rad"]));
+                return ((string)(this["matrixPATH"]));
             }
             set {
-                this["rad"] = value;
+                this["matrixPATH"] = value;
             }
         }
     }
