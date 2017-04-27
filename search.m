@@ -14,8 +14,8 @@ cos = (V * q2') ./ (sqrt(sum(q2.^2)) * sqrt(sum(V.^2, 2)));
 relevant_docs = sortrows([(1:number_of_docs)', cos](cos > min_cos, :), -2);
 doc_names = file_names(relevant_docs(:, 1));
 
-result = '';
-for i = 1:length(relevant_docs)
-	result = [result; num2str(relevant_docs(i, 2)), "\t", doc_names{i}];
+result = "\n";
+for i = 1:size(relevant_docs, 1)
+	result = [result, "\n", num2str(relevant_docs(i, 2)), "\t", doc_names{i}];
 end
 result
