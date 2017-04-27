@@ -1,6 +1,7 @@
 args = argv();
 base_path = args{1};       % 'C:/Users/Cyws/Dropbox/2.letnik/MatematicnoModeliranje/1.projekt/'
 path_to_docs = args{2};    % 'C:/Users/Cyws/Dropbox/2.letnik/MatematicnoModeliranje/1.projekt/classic/'
+mode = args{3};
 
 file_names = readdir(path_to_docs)(3:end);
 number_of_docs = length(file_names);
@@ -25,16 +26,20 @@ for i = 1:number_of_docs
 	f(:, i) = histc(numbers(doc_start:doc_end, 1), all_possible_numbers);
 end
 
-L = log(f + 1);
-gf = histc(numbers, all_possible_numbers);
-p = f ./ gf;
-plogp = p .* log(p);
-plogp(isnan(plogp)) = 0;
-G = 1 - sum(plogp/number_of_docs, 2);
-a = L .* G;
+if(mode == 'a')
+	L = log(f + 1);
+	gf = histc(numbers, all_possible_numbers);
+	p = f ./ gf;
+	plogp = p .* log(p);
+	plogp(isnan(plogp)) = 0;
+	G = 1 - sum(plogp/number_of_docs, 2);
+	a = L .* G;
+else
+	a = f
+end
 
 svd_errors = zeros(rank(a)-1, 1);
-for i=1:length(svd_errors)
+for i = 1:length(svd_errors)
 	[U, S, V] = svds(a, i);
 	svd_errors(i) = log(norm(U*S*V' - a, 'inf'));
 end
