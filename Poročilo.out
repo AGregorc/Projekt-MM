@@ -1,3 +1,0 @@
-\BOOKMARK [1][-]{section.1}{Opis problema}{}% 1
-\BOOKMARK [1][-]{section.2}{Naloge}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Iz zbirke dokumentov zgradite matriko A povezav med besedami in dokumenti. Vsak dokument naj ima v matriki svoj stolpec, vsaka beseda pa svojo vrstico. Element aij naj bo frekvenca i-te besede v j-tem dokumentu.}{section.2}% 3

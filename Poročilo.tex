@@ -150,7 +150,7 @@ Enako velja za matriko  \( V_{k} \), le da njene vrstice predstavljajo "skrite z
 \paragraph{Kakšen k uporabiti?}
 Odločili smo se, da bomo s trisekcijo poiskusili najti najprimernejši k, ki bo ohranil razcep dovolj natančen in obenem zmanjšal vpliv šuma. 
 \pagebreak \\
-Potek trisekcije: najprej za vsak i od 1 do števila pivotov matrike A izračunamo SVD razcep. V vektor shranimo logaritemske napake (napaka i-tega razcepa glede na matriko A):
+Potek trisekcije: najprej za vsak i od 1 do števila pivotov matrike A izračunamo SVD razcep, ki je odrezan na i največjih singularnih vrednosti. V vektor shranimo logaritemske napake (napaka i-tega razcepa glede na matriko A):
 
 \begin{lstlisting}
 svd_errors = zeros(rank(a)-1, 1);
@@ -258,6 +258,7 @@ Matrika A pa je potem, kot je bilo že zapisano:
 \begin{lstlisting}
 A = L .* G;
 \end{lstlisting}
+Podroben postopek je opisan tudi tukaj: \cite{dumais}
 
 \subsection{Dodajanje dokumentov in besed. Razmislite, kako bi v model dodali nov dokument ali besede, ne da bi bilo treba ponovno izračunati SVD razcep matrike A.}
 
@@ -285,7 +286,10 @@ U \cdot S \cdot p = d \]
 \[ S \cdot p = U^{T} \cdot d   \]
 \[ p = S^{-1} \cdot  U^{T} \cdot d  \]
 
-
-
+\begin{thebibliography}{9}
+\bibitem{dumais} 
+Susan T. Dumais. 
+\textit{ Improving the retrieval of information from external sources Behavior Research Methods, Instruments,  Computers, 23(2):229–236, 1991.}
+\end{thebibliography}
 
 \end{document}
