@@ -7,3 +7,12 @@ C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\bin\Debu
 C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\bin\Debug\SearchLSI.pdb
 C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Debug\SearchLSI.exe
 C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Debug\SearchLSI.pdb
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\bin\Debug\SearchLSI.exe.config
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\obj\Debug\SearchLSI.exe
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\obj\Debug\SearchLSI.pdb
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\bin\Debug\SearchLSI.exe
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\bin\Debug\SearchLSI.pdb
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\obj\Debug\SearchLSI.csprojResolveAssemblyReference.cache
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\obj\Debug\SearchLSI.Form1.resources
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\obj\Debug\SearchLSI.Properties.Resources.resources
+C:\Octave\MM\Projekt-MM\UI\SearchLSI\obj\Debug\SearchLSI.csproj.GenerateResource.Cache

@@ -49,10 +49,17 @@ right_limit = length(svd_errors);
 while(right_limit - left_limit > 2)
 	left = round(left_limit + (right_limit - left_limit) / 3);
 	right = round(right_limit - (right_limit - left_limit) / 3);
+  
 	[~, ~, r1_left] = ols(svd_errors(1:left), [(1:left)', ones(left, 1)]);
-	[~, ~, r2_left] = ols(svd_errors(left:length(svd_errors)), [(left:length(svd_errors))', ones(1+length(svd_errors)-left, 1)]);
-	[~, ~, r1_right] = ols(svd_errors(1:right), [(1:right)', ones(right)]);
-	[~, ~, r2_right] = ols(svd_errors(right:length(svd_errors)), [(right:length(svd_errors))', ones(1+length(svd_errors)-right, 1)]);
+	[~, ~, r2_left] = ols(svd_errors(left:length(svd_errors)), 
+      [(left:length(svd_errors))', ones(1+length(svd_errors)-left, 1)]);
+	
+  
+  [~, ~, r1_right] = ols(svd_errors(1:right), [(1:right)', ones(right)]);
+	[~, ~, r2_right] = ols(svd_errors(right:length(svd_errors)), 
+      [(right:length(svd_errors))', ones(1+length(svd_errors)-right, 1)]);
+  
+  
 	if(mean([r1_left; r2_left].^2) < mean([r1_right; r2_right].^2))
 		right_limit = right;
 	else
