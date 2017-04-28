@@ -52,7 +52,7 @@ namespace SearchLSI
             {
                 String sPath = folderDialog.SelectedPath;
                
-                Properties.Settings.Default.folderPATH = sPath + " / ";
+                Properties.Settings.Default.folderPATH = sPath + " /";
 
             }
             else
@@ -162,7 +162,7 @@ namespace SearchLSI
             textBoxResult.Text = izhod;
             _process.Close();
             dokumenti = list.ToArray();
-
+            //MessageBox.Show(dokumenti.Length.ToString());
             startInd = 0;
             if (dokumenti.Length > 0)
             {
@@ -179,7 +179,7 @@ namespace SearchLSI
             Properties.Settings.Default.generatePATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do generate.m", "PATH", Properties.Settings.Default.generatePATH, -1, -1);
             string potDoGenerate = Properties.Settings.Default.generatePATH;
             string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
-            Properties.Settings.Default.folderPATH = potdo + "classic" + "/";
+            Properties.Settings.Default.folderPATH = potdo + "classic/";
             Properties.Settings.Default.matrixPATH = potdo;
             //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
         }
