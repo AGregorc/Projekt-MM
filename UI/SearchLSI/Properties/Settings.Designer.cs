@@ -62,24 +62,36 @@ namespace SearchLSI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Cyws\\Dropbox\\2.letnik\\MatematicnoModeliranje\\1.projekt\\classic\\")]
-        public string folderPATH {
+        public string docsDIR {
             get {
-                return ((string)(this["folderPATH"]));
+                return ((string)(this["docsDIR"]));
             }
             set {
-                this["folderPATH"] = value;
+                this["docsDIR"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Cyws\\Dropbox\\2.letnik\\MatematicnoModeliranje\\1.projekt\\")]
-        public string matrixPATH {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Cyws\\Dropbox\\2.letnik\\MatematicnoModeliranje\\1.projekt\\data.mat")]
+        public string dataLoadPATH {
             get {
-                return ((string)(this["matrixPATH"]));
+                return ((string)(this["dataLoadPATH"]));
             }
             set {
-                this["matrixPATH"] = value;
+                this["dataLoadPATH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Cyws\\Dropbox\\2.letnik\\MatematicnoModeliranje\\1.projekt\\data.mat")]
+        public string dataSavePATH {
+            get {
+                return ((string)(this["dataSavePATH"]));
+            }
+            set {
+                this["dataSavePATH"] = value;
             }
         }
     }

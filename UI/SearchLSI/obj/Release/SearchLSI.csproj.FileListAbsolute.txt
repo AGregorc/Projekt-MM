@@ -7,3 +7,4 @@ C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Rele
 C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Release\SearchLSI.csproj.GenerateResource.Cache
 C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Release\SearchLSI.exe
 C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Release\SearchLSI.pdb
+C:\Users\Cyws\Documents\Visual Studio 2017\Projects\SearchLSI\SearchLSI\obj\Release\SearchLSI.Form2.resources

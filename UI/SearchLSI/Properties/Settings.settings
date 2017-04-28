@@ -11,11 +11,14 @@
     <Setting Name="searchPATH" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\search.m</Value>
     </Setting>
-    <Setting Name="folderPATH" Type="System.String" Scope="User">
+    <Setting Name="docsDIR" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\classic\</Value>
     </Setting>
-    <Setting Name="matrixPATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\</Value>
+    <Setting Name="dataLoadPATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\data.mat</Value>
+    </Setting>
+    <Setting Name="dataSavePATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\data.mat</Value>
     </Setting>
   </Settings>
 </SettingsFile>

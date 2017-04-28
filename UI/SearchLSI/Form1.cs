@@ -22,7 +22,7 @@ namespace SearchLSI
             InitializeComponent();
         }
 
-
+        bool settingsForMe = false;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -33,9 +33,16 @@ namespace SearchLSI
             double trackVal = trackBar1.Value;
             trackVal = trackVal / 100;
             label1.Text = "cos: "+trackVal.ToString();
-            string potDoGenerate = Properties.Settings.Default.generatePATH;
-            string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
-            Properties.Settings.Default.matrixPATH = potdo;
+            if (!settingsForMe)
+            {
+                Properties.Settings.Default.generatePATH = @"..\..\..\..\generate.m";
+                Properties.Settings.Default.searchPATH = @"..\..\..\..\search.m";
+                Properties.Settings.Default.docsDIR = @"..\..\..\..\classic1\";
+                Properties.Settings.Default.dataLoadPATH = @"..\..\..\..\data.mat";
+                Properties.Settings.Default.dataSavePATH = @"..\..\..\..\data.mat";
+            }
+
+
 
         }
 
@@ -43,7 +50,7 @@ namespace SearchLSI
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            folderDialog.SelectedPath = Properties.Settings.Default.folderPATH;
+            folderDialog.SelectedPath = Properties.Settings.Default.docsDIR;
             folderDialog.ShowNewFolderButton = false;
             
             DialogResult result = folderDialog.ShowDialog();
@@ -52,13 +59,10 @@ namespace SearchLSI
             {
                 String sPath = folderDialog.SelectedPath;
                
-                Properties.Settings.Default.folderPATH = sPath + " /";
+                Properties.Settings.Default.docsDIR = sPath + " /";
 
             }
-            else
-            {
-                
-            }
+         
             
         }
 
@@ -73,12 +77,17 @@ namespace SearchLSI
             _process.StartInfo.CreateNoWindow = true;
             _process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             _process.StartInfo.FileName = Properties.Settings.Default.octavePATH;
-            string potDoGenerate = Properties.Settings.Default.generatePATH;
-            string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
+           
 
             //_process.StartInfo.Arguments = @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\generate.m" + " 10 "+ @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\"+" "+ @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\classic\";
-            
-            _process.StartInfo.Arguments = Properties.Settings.Default.generatePATH +" "+ potdo + " "+ Properties.Settings.Default.folderPATH +" "+(radioButtonFrek.Checked?"f":"a");
+            /*
+             * 
+             *
+            docs_dir = args{1};
+            mode = args{2};
+            save_path = args{3};
+             * */
+            _process.StartInfo.Arguments = Properties.Settings.Default.generatePATH +" "+ Properties.Settings.Default.docsDIR + " "+ (radioButtonFrek.Checked ? "f" : "a") + " "+ Properties.Settings.Default.dataSavePATH;
 
             Boolean napaka = false;
             if (!_process.Start())
@@ -122,13 +131,20 @@ namespace SearchLSI
             _process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             _process.StartInfo.FileName = Properties.Settings.Default.octavePATH;
             int stBesed = textBoxSearch.Text.Split(null).Length;//split by whitespaces and count
-            string potDoGenerate = Properties.Settings.Default.generatePATH;
-            string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
-            
-           
-           
-            
-            _process.StartInfo.Arguments = potdo +"search.m" + " " + Properties.Settings.Default.matrixPATH + " "+ trackBar1.Value + " " + textBoxSearch.Text;
+          
+
+
+            /*
+             * 
+             * 
+             * 
+             * za search pa 
+             load_path = args{1};
+             min_cos = str2num(args{2})/100;
+             od tle naprej pa vse besede za search
+             * */
+
+            _process.StartInfo.Arguments = Properties.Settings.Default.searchPATH + " " + Properties.Settings.Default.dataLoadPATH + " "+ trackBar1.Value + " " + textBoxSearch.Text;
 
             if (!_process.Start())
             {
@@ -167,7 +183,7 @@ namespace SearchLSI
             if (dokumenti.Length > 0)
             {
                 
-                    textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(startInd) % dokumenti.Length]);
+                    textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.docsDIR + dokumenti[Math.Abs(startInd) % dokumenti.Length]);
                 
                
             }
@@ -175,13 +191,9 @@ namespace SearchLSI
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.octavePATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do octava", "PATH", Properties.Settings.Default.octavePATH, -1, -1);
-            Properties.Settings.Default.generatePATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do generate.m", "PATH", Properties.Settings.Default.generatePATH, -1, -1);
-            string potDoGenerate = Properties.Settings.Default.generatePATH;
-            string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
-            Properties.Settings.Default.folderPATH = potdo + "classic/";
-            Properties.Settings.Default.matrixPATH = potdo;
-            //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
+            Form2 forma2 = new Form2();
+            forma2.ShowDialog();
+            
         }
 
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -198,7 +210,7 @@ namespace SearchLSI
         {
             try
             {
-                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(++startInd) % dokumenti.Length]);
+                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.docsDIR + dokumenti[Math.Abs(++startInd) % dokumenti.Length]);
             }
             catch
             {
@@ -214,7 +226,7 @@ namespace SearchLSI
         {
             try
             {
-                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(--startInd) % dokumenti.Length]);
+                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.docsDIR + dokumenti[Math.Abs(--startInd) % dokumenti.Length]);
             }
             catch
             {
@@ -245,7 +257,7 @@ namespace SearchLSI
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            folderDialog.SelectedPath = Properties.Settings.Default.matrixPATH;
+            folderDialog.SelectedPath = Properties.Settings.Default.dataLoadPATH;
             folderDialog.ShowNewFolderButton = false;
            
             DialogResult result = folderDialog.ShowDialog();
@@ -254,13 +266,10 @@ namespace SearchLSI
             {
                 String sPath = folderDialog.SelectedPath;
 
-                Properties.Settings.Default.matrixPATH = sPath + "/";
+                Properties.Settings.Default.dataLoadPATH = sPath + "/";
 
             }
-            else
-            {
-
-            }
+        
         }
     }
 }
