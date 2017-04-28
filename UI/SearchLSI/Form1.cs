@@ -68,7 +68,7 @@ namespace SearchLSI
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            textBoxResult.Text = "Generating";
+            textBoxResult.Text = "Generating ";
             Process _process = new Process();
             _process.StartInfo.UseShellExecute = false;
             _process.StartInfo.RedirectStandardInput = true;
@@ -77,7 +77,7 @@ namespace SearchLSI
             _process.StartInfo.CreateNoWindow = true;
             _process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             _process.StartInfo.FileName = Properties.Settings.Default.octavePATH;
-           
+            textBoxResult.AppendText(".");
 
             //_process.StartInfo.Arguments = @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\generate.m" + " 10 "+ @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\"+" "+ @"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\classic\";
             /*
@@ -88,7 +88,7 @@ namespace SearchLSI
             save_path = args{3};
              * */
             _process.StartInfo.Arguments = Properties.Settings.Default.generatePATH +" "+ Properties.Settings.Default.docsDIR + " "+ (radioButtonFrek.Checked ? "f" : "a") + " "+ Properties.Settings.Default.dataSavePATH;
-
+            textBoxResult.AppendText(".");
             Boolean napaka = false;
             if (!_process.Start())
             {
@@ -109,8 +109,9 @@ namespace SearchLSI
                 izhod += line + "\n";
                 textBoxResult.AppendText(line);
                 // do something with line
-
+               
             }
+            textBoxResult.AppendText(".");
             if (!napaka) textBoxResult.AppendText("\nSuccesfully generated");
             else textBoxResult.AppendText("\nerror while generating");
 
