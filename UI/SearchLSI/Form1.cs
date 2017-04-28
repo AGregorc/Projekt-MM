@@ -42,15 +42,17 @@ namespace SearchLSI
         private void button1_Click_1(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            folderDialog.SelectedPath = Properties.Settings.Default.folderPATH;
             folderDialog.ShowNewFolderButton = false;
-            folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            
             DialogResult result = folderDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
                 String sPath = folderDialog.SelectedPath;
                
-                Properties.Settings.Default.folderPATH = sPath + "/";
+                Properties.Settings.Default.folderPATH = sPath + " /";
 
             }
             else
@@ -62,6 +64,7 @@ namespace SearchLSI
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            textBoxResult.Text = "Generating";
             Process _process = new Process();
             _process.StartInfo.UseShellExecute = false;
             _process.StartInfo.RedirectStandardInput = true;
@@ -122,11 +125,10 @@ namespace SearchLSI
             string potDoGenerate = Properties.Settings.Default.generatePATH;
             string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
             
-            double prop = trackBar1.Value;
-            prop = prop / 100;
+           
            
             
-            _process.StartInfo.Arguments = potdo +"search.m" + " " + Properties.Settings.Default.matrixPATH + " "+ prop + " " + textBoxSearch.Text;
+            _process.StartInfo.Arguments = potdo +"search.m" + " " + Properties.Settings.Default.matrixPATH + " "+ trackBar1.Value + " " + textBoxSearch.Text;
 
             if (!_process.Start())
             {
@@ -160,18 +162,14 @@ namespace SearchLSI
             textBoxResult.Text = izhod;
             _process.Close();
             dokumenti = list.ToArray();
-
+            //MessageBox.Show(dokumenti.Length.ToString());
             startInd = 0;
             if (dokumenti.Length > 0)
             {
-                try
-                {
-                    textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[startInd]);
-                }
-                catch
-                {
-
-                }
+                
+                    textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(startInd) % dokumenti.Length]);
+                
+               
             }
         }
 
@@ -181,8 +179,9 @@ namespace SearchLSI
             Properties.Settings.Default.generatePATH = Microsoft.VisualBasic.Interaction.InputBox("Vnesi pot do generate.m", "PATH", Properties.Settings.Default.generatePATH, -1, -1);
             string potDoGenerate = Properties.Settings.Default.generatePATH;
             string potdo = potDoGenerate.Replace("generate.m", "");//@"C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\
-            Properties.Settings.Default.folderPATH = potdo + "classic" + "/";
-                      //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
+            Properties.Settings.Default.folderPATH = potdo + "classic/";
+            Properties.Settings.Default.matrixPATH = potdo;
+            //  MessageBox.Show(Properties.Settings.Default.potDoGenerate);
         }
 
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -213,9 +212,14 @@ namespace SearchLSI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
-            textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(--startInd) % dokumenti.Length]);
-            
+            try
+            {
+                textBoxVsebina.Text = System.IO.File.ReadAllText(Properties.Settings.Default.folderPATH + dokumenti[Math.Abs(--startInd) % dokumenti.Length]);
+            }
+            catch
+            {
+
+            }
             
 
         }
@@ -240,8 +244,10 @@ namespace SearchLSI
         private void button6_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            folderDialog.SelectedPath = Properties.Settings.Default.matrixPATH;
             folderDialog.ShowNewFolderButton = false;
-            folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+           
             DialogResult result = folderDialog.ShowDialog();
 
             if (result == DialogResult.OK)
