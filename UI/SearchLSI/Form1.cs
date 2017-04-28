@@ -102,7 +102,7 @@ namespace SearchLSI
                 
             }
             string izhod = "";
-            textBoxResult.Text = "";
+            
             while (!_process.StandardOutput.EndOfStream)
             {
                 string line = _process.StandardOutput.ReadLine();
