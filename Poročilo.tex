@@ -8,16 +8,28 @@
 \usepackage{color} 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{tikz}
 \usepackage{mathtools}
 \usepackage{blkarray, bigstrut}
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 \usepackage{listings}
 \usepackage{color}
+\usepackage[slovene]{babel}
+
+\graphicspath{ {images/} }
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {$#2$};}
+
+\newcommand{\DrawLine}[3][]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[#1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
 
 \lstset{
   language=Octave,
@@ -68,7 +80,7 @@ Matrika A:
     \end{block}
     \begin{block}{[*{5}{c}]>{$\footnotesize}l<{$}}
       a_{11}  & a_{12} & \dots           & a_{1D}       & \bigstrut[t]& beseda1 \\
-       a_{11} & a_{12} &                    & \bigstrut[t] &                   &   beseda2 \\
+       a_{21} & a_{22} &                    & \bigstrut[t] &                   &   beseda2 \\
       \vdots   &             & \ddots         &                    &                   &   \vdots  \\
       a_{B1} &              &  \bigstrut[t] & a_{BD}       &                   &  besedaB \\
     \end{block}
@@ -148,28 +160,50 @@ for i=1:length(svd_errors)
 end
 \end{lstlisting}
 
-Nato s pomočjo trisekcije najdemo dve točki, ki razdelijo podatke (vektor napak) na tri dele. Vsi deli imajo enako število podatkov. Vsako točko posebej pa uporabimo za razdelitev vseh podatkov, po katerih z linearno (\( y = x\cdot b + e \)) metodo najmanjših kvadratov najdemo dve najprimernejši premici. Postopek trisekcije nadaljujemo tako, da prestavimo skrajno desno oz. levo točko (odvisno, kateri dve premici najbolje opisujeta krivuljo napake). \\ \\
+Nato s pomočjo trisekcije najdemo dve točki, ki razdelijo podatke (vektor napak) na tri dele. Vsi deli imajo enako število podatkov. Vsako točko posebej pa uporabimo za razdelitev vseh podatkov, po katerih z linearno (\( y = x\cdot b + e \)) metodo najmanjših kvadratov najdemo dve najprimernejši premici. Postopek trisekcije nadaljujemo tako, da prestavimo skrajno desno oz. levo točko (odvisno, kateri dve premici najbolje opisujeta krivuljo napake). Algoritem končamo, ko sta si skrajni levi in desni točki med seboj oddaljeni za manj kot 2. \\ 
+
+\begin{figure}[h]
+    \centering
+   \includegraphics[width=\textwidth]{graf001}
+    \caption{x os označuje število k, y os pa logaritemsko napako. Z modro barvo so predstavljeni vsi podatki (napake), rdeča in rumena pa sta premici, ki najbolje opisujeta podatke. }
+    \label{slika:trisekcija1}
+\end{figure}
+
+Kot se vidi na sliki \ref{slika:trisekcija1}, je dobro vzeti tak k, ki je blizu presečišča premic. Mi smo se odločili, da bomo za k vzeli srednjo vrednost mejnih točk naše trisekcije. Tak k naredi razcep dovolj oddaljen matriki A, torej smo z njim odstranili odvečno prilagoditev modela podatkom, in še vedno dovolj blizu, da lahko pri poizvedbi vrne primerne rezultate. \\
+
+\pagebreak
+
 Implementacija trisekcije:
 
 \begin{lstlisting}
-left_limit = 1;
-right_limit = length(svd_errors);
+left_limit = 1; # skrajno leva tocka
+right_limit = length(svd_errors); # skrajno desna tocka
 while(right_limit - left_limit > 2)
+	# tocki, ki razdelita podatke na 3 dele
 	left = round(left_limit + (right_limit - left_limit) / 3);
 	right = round(right_limit - (right_limit - left_limit) / 3);
-	[~, ~, r1_left] = ols(svd_errors(1:left), (1:left)');
-	[~, ~, r2_left] = ols(svd_errors(left:length(svd_errors)), (left:length(svd_errors))');
-	[~, ~, r1_right] = ols(svd_errors(1:right), (1:right)');
-	[~, ~, r2_right] = ols(svd_errors(right:length(svd_errors)), (right:length(svd_errors))');
+  
+	# z metodo najmanjsih kvadratov izracunani premici, ko so podakti razdeljeni po levi tocki
+	[~, ~, r1_left] = ols(svd_errors(1:left), [(1:left)', ones(left, 1)]);
+	[~, ~, r2_left] = ols(svd_errors(left:length(svd_errors)), 
+      [(left:length(svd_errors))', ones(1+length(svd_errors)-left, 1)]);
+	
+  	# enako velja za desno tocko
+  	[~, ~, r1_right]=ols(svd_errors(1:right),[(1:right)', ones(right)]);
+	[~, ~, r2_right]=ols(svd_errors(right:length(svd_errors)), 
+      [(right:length(svd_errors))',ones(1+length(svd_errors)-right,1)]);
+  
+  	# prestavimo skrajno desno oz. levo tocko
 	if(mean([r1_left; r2_left].^2) < mean([r1_right; r2_right].^2))
 		right_limit = right;
 	else
 		left_limit = left;
 	end
 end
-k = round((right_limit + left_limit) / 2);
+k = round((right_limit + left_limit) / 2)
 \end{lstlisting}
-\pagebreak
+
+
 \subsection{Iskani niz besed (poizvedbo) zapišite z vektorjem q. Iz poizvedbe q generirajte vektor v prostoru dokumentov s formulo 
 \( \hat q  = q ^{T}\cdot U_{k}  \cdot S_{ k }^{-1}\) }
 
@@ -190,7 +224,7 @@ q2 = q' * U * inv(S); # generiran vektor v prostoru dokumentov
 # izracun kosinusne razdalje
 cos = (V * q2') ./ (sqrt(sum(q2.^2)) * sqrt(sum(V.^2, 2)));
 
-# vrne vektor relevantnih dokumentov, ki imajo razdaljo vecjo od min_cos
+# vrne vektor relevantnih dokumentov, ki so blizje od min_cos
 relevant_docs=sortrows([(1:number_of_docs)', cos](cos > min_cos, :), -2);
 doc_names = file_names(relevant_docs(:, 1));
 \end{lstlisting}
@@ -203,7 +237,53 @@ kjer je n število dokumentov v zbirki, \\*
 {\Large\centerline{\( p_{ij} = \frac{ f_{ij}}{gf_{ij}} \)}}\\*
 in \(gf_{ij}\) frekvenca besede v celotni zbirki. }
 
+Metodo je mogoče izboljšati, če frekvence v matriki A nadomestimo z bolj kompleksnimi merami. V splošnem lahko element matrike zapišemo kot produkt
+\[ a_{ij} = L_{ij} \cdot G_{i}, \]
+ kjer je \(L_{ij} \) lokalna mera za pomembnost besede v posameznem dokumentu, \(G_{i} \) pa globalna mera pomembnosti posamezne besede. \\
 
+Implementacija v Octave:
+ \(L_{ij} \) je preprosto samo logaritem matrike A, ki smo jo zgracili pri \ref{sec:matrikaA}:
+\begin{lstlisting}
+L = log(A + 1);
+\end{lstlisting}
+\(G_{i} \)  pa generiramo z naslednjii vrsticami:
+\begin{lstlisting}
+gf=histc(numbers,all_possible_numbers);#frekvenca besede v celotni zbirki
+p = f ./ gf; # izracun p-ja
+plogp = p .* log(p); # entropija
+plogp(isnan(plogp))=0;#ker log(0) vrne NaN, te vrednosti spremenimo na 0
+G = 1 - sum(plogp/number_of_docs, 2); # izracun G-ja
+\end{lstlisting}
+Matrika A pa je potem, kot je bilo že zapisano:
+\begin{lstlisting}
+A = L .* G;
+\end{lstlisting}
+
+\subsection{Dodajanje dokumentov in besed. Razmislite, kako bi v model dodali nov dokument ali besede, ne da bi bilo treba ponovno izračunati SVD razcep matrike A.}
+
+Ko je matrika A dovolj velika, t. j. ima veliko število unikatnih besed, lahko v model dodamo nove dokumente brez SVD razcepa, saj dokument ne prinaša veliko novih značilnosti in s tem ne vpliva veliko na razcep. Drugače povedano, SVD razcep se ne oddalji od matrike A preveč (napaka se ne spremeni bistveno). \\ \\
+Ideja je, da matriki A dodamo nov stolpec (v nadaljevanju vektor d):
+\begin{equation*}
+  \mathbf{A}=
+  \begin{blockarray}{*{6}{c} l}
+    \begin{block}{*{6}{>{$\footnotesize}c<{$}} l}
+      doc1 & doc2 &  &  docD & docNov \\
+    \end{block}
+    \begin{block}{[*{6}{c}]>{$\footnotesize}l<{$}}
+      a_{11}  & a_{12} & \dots           & a_{1D}       & a_{1D+1}  &  & beseda1 \\
+       a_{21} & a_{22} &                    & \bigstrut[t] &  a_{2D+1} &  &  beseda2 \\
+      \vdots   &             & \ddots         &                    &  \vdots       &  &   \vdots  \\
+      a_{B1} &              &  \bigstrut[t] & a_{BD}       &  a_{BD+1} &  &  besedaB \\
+    \end{block}
+  \end{blockarray}
+\end{equation*}
+
+In ker je \( U \cdot S \cdot V^{T} = A \), in ker želimo v razcep dodati samo vektor d iz matrike A, se ta doda v nov zadnji stolpec (vektor p) matrike \(  V^{T} \):
+
+\[ 
+U \cdot S \cdot p = d \]
+\[ S \cdot p = U^{T} \cdot d   \]
+\[ p = S^{-1} \cdot  U^{T} \cdot d  \]
 
 
 
