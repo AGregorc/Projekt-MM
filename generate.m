@@ -1,14 +1,14 @@
 args = argv();
-base_path = args{1};       % 'C:/Users/Cyws/Dropbox/2.letnik/MatematicnoModeliranje/1.projekt/'
-path_to_docs = args{2};    % 'C:/Users/Cyws/Dropbox/2.letnik/MatematicnoModeliranje/1.projekt/classic/'
-mode = args{3};
+docs_dir = args{1};
+mode = args{2};
+save_path = args{3};
 
-file_names = readdir(path_to_docs)(3:end);
+file_names = readdir(docs_dir)(3:end);
 number_of_docs = length(file_names);
 all_words = [];
 num_of_words_in_docs = zeros(1, number_of_docs);
 for i = 1:number_of_docs
-	doc = textread([path_to_docs, filesep, file_names{i}], '%s');
+	doc = textread([docs_dir, filesep, file_names{i}], '%s');
 	for j = 1:length(doc)
 		doc{j} = lower(doc{j}(isalnum(doc{j})));
 	end
@@ -77,4 +77,4 @@ k = round((right_limit + left_limit) / 2)
 
 [U, S, V] = svds(a, k);
 
-save([base_path, 'generated_search_data.mat'], 'file_names', 'number_of_docs', 'unique_words', 'U', 'S', 'V');
+save(save_path, 'file_names', 'number_of_docs', 'unique_words', 'U', 'S', 'V');
