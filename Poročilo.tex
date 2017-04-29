@@ -2,6 +2,9 @@
 \usepackage{tikz}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage{indentfirst}
@@ -285,6 +288,38 @@ In ker je \( U \cdot S \cdot V^{T} = A \), in ker želimo v razcep dodati samo v
 U \cdot S \cdot p = d \]
 \[ S \cdot p = U^{T} \cdot d   \]
 \[ p = S^{-1} \cdot  U^{T} \cdot d  \]
+
+\section{Uporabniški vmesnik}
+Naredili smo tudi uporabniški vmesnik, ki ponuja uporabniku tako generiranje matrike iz dokumentov, kot tudi iskanje po njem. Glavne funkcionalnosti so predstavljene s slikami:  \ref{slika:UI1}, \ref{slika:UI2}, \ref{slika:UI3}, \ref{slika:UI4}
+
+\begin{figure}[h]
+ \centering
+    \includegraphics[width=\linewidth]{UI001}
+    \caption{Prikazuje iskanje po besedi matrix v datotekah. Rezultat je vrnil dva dokumenta in najbližjega tudi izpisal. }
+    \label{slika:UI1}
+\end{figure}
+
+\begin{figure}
+\begin{minipage}{.5\textwidth}
+    \includegraphics[width=\linewidth,left]{UI002}
+    \captionof{figure}{Najbližji dokument }
+    \label{slika:UI2}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+    \includegraphics[width=\linewidth,right]{UI003}
+    \caption{Drugi najbližji dokument }
+    \label{slika:UI3}
+\end{minipage} \\
+ Poizvedba po nizu 'curve fitting'. S klikom next in back se lahko premikamo po bolj oz. manj dobrih zadetkih. Minimalno kosinusno razdaljo si lahko tudi sami nastavimo (na trenutni sliki je cos: 0.75). 
+\end{figure}
+
+\begin{figure}[h]
+ \centering
+    \includegraphics[width=.8\linewidth]{browseDialog}
+    \caption{Uporabniški vmesnik omogoča tudi nastavljanje poti do dokumentov.}
+    \label{slika:UI4}
+\end{figure}
+
 
 \begin{thebibliography}{9}
 \bibitem{dumais} 
