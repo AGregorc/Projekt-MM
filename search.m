@@ -1,3 +1,7 @@
+%search.m - Funkcija vrne dokumente, kateri so še v meji naše tolerance.
+%Prvi argument - direktorji, kjer so shranjeni podatki
+%Drugi argument - naša toleranca
+
 args = argv();
 load_path = args{1};
 min_cos = str2num(args{2})/100;
