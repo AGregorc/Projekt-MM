@@ -1,7 +1,7 @@
-%generate.m - Prebere datoteke, jih predela in shrani pridobljene podatke.
-%Prvi argument - diraktorij datotek
-%Drugi argument - metoda: izboljšana metoda = 'a', navadna metoda = 'b'
-%Tretji argument - diraktorij za shranjevanje rezultatov
+% generate.m - Prebere datoteke, jih predela in shrani pridobljene podatke.
+% Prvi argument - direktorij datotek
+% Drugi argument - metoda: izboljsana metoda = 'a', navadna metoda = 'b'
+% Tretji argument - direktorij za shranjevanje rezultatov
 
 args = argv();
 docs_dir = args{1};

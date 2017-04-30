@@ -1,6 +1,6 @@
-%search.m - Funkcija vrne dokumente, kateri so še v meji naše tolerance.
-%Prvi argument - direktorji, kjer so shranjeni podatki
-%Drugi argument - naša toleranca
+% search.m - Funkcija vrne dokumente, kateri so se v meji nase tolerance.
+% Prvi argument - direktorji, kjer so shranjeni podatki
+% Drugi argument - nasa toleranca
 
 args = argv();
 load_path = args{1};
