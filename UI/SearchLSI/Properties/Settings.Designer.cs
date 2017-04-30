@@ -25,7 +25,7 @@ namespace SearchLSI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\generate.m")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\generate.m")]
         public string generatePATH {
             get {
                 return ((string)(this["generatePATH"]));
@@ -49,7 +49,7 @@ namespace SearchLSI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\search.m")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\search.m")]
         public string searchPATH {
             get {
                 return ((string)(this["searchPATH"]));
@@ -61,7 +61,7 @@ namespace SearchLSI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\classic1\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\classic1\\")]
         public string docsDIR {
             get {
                 return ((string)(this["docsDIR"]));
@@ -73,7 +73,7 @@ namespace SearchLSI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\data.mat")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\data.mat")]
         public string dataLoadPATH {
             get {
                 return ((string)(this["dataLoadPATH"]));
@@ -85,7 +85,7 @@ namespace SearchLSI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\data.mat")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\data.mat")]
         public string dataSavePATH {
             get {
                 return ((string)(this["dataSavePATH"]));
