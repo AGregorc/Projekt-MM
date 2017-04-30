@@ -35,11 +35,13 @@ namespace SearchLSI
             label1.Text = "cos: "+trackVal.ToString();
             if (!settingsForMe)
             {
+                /*
                 Properties.Settings.Default.generatePATH = @"..\..\..\..\generate.m";
                 Properties.Settings.Default.searchPATH = @"..\..\..\..\search.m";
                 Properties.Settings.Default.docsDIR = @"..\..\..\..\classic1\";
                 Properties.Settings.Default.dataLoadPATH = @"..\..\..\..\data.mat";
                 Properties.Settings.Default.dataSavePATH = @"..\..\..\..\data.mat";
+                */
             }
 
 
@@ -271,6 +273,11 @@ namespace SearchLSI
 
             }
         
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
     }
 }

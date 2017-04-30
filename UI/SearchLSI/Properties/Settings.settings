@@ -3,22 +3,22 @@
   <Profiles />
   <Settings>
     <Setting Name="generatePATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\generate.m</Value>
+      <Value Profile="(Default)">..\..\..\..\generate.m</Value>
     </Setting>
     <Setting Name="octavePATH" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Octave\Octave-4.2.1\bin\octave-cli.exe</Value>
     </Setting>
     <Setting Name="searchPATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\search.m</Value>
+      <Value Profile="(Default)">..\..\..\..\search.m</Value>
     </Setting>
     <Setting Name="docsDIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\classic\</Value>
+      <Value Profile="(Default)">..\..\..\..\classic1\</Value>
     </Setting>
     <Setting Name="dataLoadPATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\data.mat</Value>
+      <Value Profile="(Default)">..\..\..\..\data.mat</Value>
     </Setting>
     <Setting Name="dataSavePATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Cyws\Dropbox\2.letnik\MatematicnoModeliranje\1.projekt\data.mat</Value>
+      <Value Profile="(Default)">..\..\..\..\data.mat</Value>
     </Setting>
   </Settings>
 </SettingsFile>
