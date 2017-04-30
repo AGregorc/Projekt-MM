@@ -239,6 +239,7 @@ Globalna mera pa je izračunana s pomočjo entropije: \\*
 kjer je n število dokumentov v zbirki, \\*
 {\Large\centerline{\( p_{ij} = \frac{ f_{ij}}{gf_{ij}} \)}}\\*
 in \(gf_{ij}\) frekvenca besede v celotni zbirki. }
+\label{sec:matrikaZEntropijo}
 
 Metodo je mogoče izboljšati, če frekvence v matriki A nadomestimo z bolj kompleksnimi merami. V splošnem lahko element matrike zapišemo kot produkt
 \[ a_{ij} = L_{ij} \cdot G_{i}, \]
@@ -289,13 +290,18 @@ U \cdot S \cdot p = d \]
 \[ S \cdot p = U^{T} \cdot d   \]
 \[ p = S^{-1} \cdot  U^{T} \cdot d  \]
 
-\section{Uporabniški vmesnik}
-Naredili smo tudi uporabniški vmesnik, ki ponuja uporabniku tako generiranje matrike iz dokumentov, kot tudi iskanje po njem. Glavne funkcionalnosti so predstavljene s slikami:  \ref{slika:UI1}, \ref{slika:UI2}, \ref{slika:UI3}, \ref{slika:UI4}
+\section{Uporabniški vmesnik in rezultati}
+Naredili smo tudi uporabniški vmesnik, ki ponuja uporabniku tako generiranje matrike iz dokumentov, kot tudi iskanje po njem. Glavne funkcionalnosti in rezultati poizvedb so predstavljene s slikami:  \ref{slika:UI1}, \ref{slika:UI2}, \ref{slika:UI3}, \ref{slika:UI4} \\
+Z rezultati smo zadovoljni, saj s poizvedbami res najde primerne dokumente, v katerem so kontekstno uvrščene besede, ki smo jih zapisali v nizu poizvedbe. 
+
+
+\section{Razdelitev dela}
+Delo smo si razdelili tako: Rok Grmek: delo z Octave skriptami, Domen Gašperlin: uporabniški vmesnik, Jakob Gaberc Artenjak in Anže Gregorc: poročilo
 
 \begin{figure}[h]
  \centering
     \includegraphics[width=\linewidth]{UI001}
-    \caption{Prikazuje iskanje po besedi matrix v datotekah. Rezultat je vrnil dva dokumenta in najbližjega tudi izpisal. }
+    \caption{Prikazuje iskanje po besedi matrix v datotekah. Rezultat je vrnil en dokument in ga tudi izpisal. S klikom na glob oziroma frek lahko spreminjamo generirano matriko A. Možnosti sta: \ref{sec:matrikaA} in \ref{sec:matrikaZEntropijo}}
     \label{slika:UI1}
 \end{figure}
 
@@ -316,7 +322,7 @@ Naredili smo tudi uporabniški vmesnik, ki ponuja uporabniku tako generiranje ma
 \begin{figure}[h]
  \centering
     \includegraphics[width=.8\linewidth]{browseDialog}
-    \caption{Uporabniški vmesnik omogoča tudi nastavljanje poti do dokumentov.}
+    \caption{Uporabniški vmesnik omogoča tudi nastavljanje poti do okolja Octave, skript generate.m ter search.m,  dokumentov in kam naj shrani oz. kje naj najde generirano matriko A. Prvzete vrednosti so prikazane na sliki.}
     \label{slika:UI4}
 \end{figure}
 
